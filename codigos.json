@@ -1,0 +1,32 @@
+[
+  {
+    "code": "750H-HKJ-NOJP-750-JP",
+    "raridade": "Comum",
+    "chance": 70,
+    "valor": 750
+  },
+  {
+    "code": "INC-MONETA-2500-X1",
+    "raridade": "Incomum",
+    "chance": 20,
+    "valor": 2500
+  },
+  {
+    "code": "RAR-GOLD-50000-Z9",
+    "raridade": "Raro",
+    "chance": 8,
+    "valor": 50000
+  },
+  {
+    "code": "EPC-MYTH-500000-K2",
+    "raridade": "Épico",
+    "chance": 1.9,
+    "valor": 500000
+  },
+  {
+    "code": "MONETA-GOD-5M-ULTRA",
+    "raridade": "Lendário",
+    "chance": 0.1,
+    "valor": 5000000
+  }
+]
