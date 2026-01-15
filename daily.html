@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moneta | Daily Luck</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #0a0a0c; color: #fff; text-align: center; display: flex; flex-direction: column; height: 100vh; }
+        .roleta-box { width: 250px; height: 250px; border: 4px solid #5eead4; border-radius: 50%; margin: 50px auto; display: flex; align-items: center; justify-content: center; font-size: 60px; transition: transform 3s cubic-bezier(0.15, 0, 0.15, 1); background: #12121a; }
+        .btn-action { padding: 15px 30px; background: #5eead4; border: none; font-weight: bold; cursor: pointer; border-radius: 4px; }
+        .reward-box { margin-top: 30px; display: none; padding: 20px; border: 1px dashed #5eead4; background: #151520; }
+        .code-display { display: block; font-family: monospace; font-size: 24px; margin: 10px 0; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <header style="padding: 20px;"><a href="index.html" style="color: #5eead4; text-decoration: none;">← Voltar</a></header>
+    <h1>DAILY LUCK</h1>
+    <div class="roleta-box" id="roleta">💰</div>
+    <button class="btn-action" id="btnGirar" onclick="girarRoleta()">GIRAR ROLETA</button>
+    <div class="reward-box" id="rewardBox">
+        <p>Raridade: <span id="raridade"></span></p>
+        <span class="code-display" id="codigo" onclick="copiarCodigo()"></span>
+        <small>(Clique no código para copiar)</small>
+    </div>
+    <script src="js/roleta.js"></script>
+</body>
+</html>
