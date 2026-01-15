@@ -5,116 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moneta | Daily Luck</title>
     <style>
+        /* CSS DARK TECH INTEGRADO */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background: #0a0a0c; color: #fff; text-align: center; height: 100vh; display: flex; flex-direction: column; }
+        body { background: #0a0a0c; color: #fff; text-align: center; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
         
-        header { padding: 20px; text-align: left; }
-        .back-link { color: #5eead4; text-decoration: none; font-size: 14px; }
+        header { padding: 20px; text-align: left; border-bottom: 1px solid #1f1f2e; }
+        .back-link { color: #5eead4; text-decoration: none; font-size: 14px; font-weight: bold; }
 
-        .container { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .container { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
 
         /* Janela do Sorteio */
         .roller-window {
-            width: 300px;
-            height: 80px;
-            border: 2px solid #1f1f2e;
-            background: #12121a;
-            position: relative;
-            overflow: hidden; /* Esconde os textos que estão fora */
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 0 15px rgba(94, 234, 212, 0.1);
+            width: 320px; height: 90px; border: 2px solid #1f1f2e; background: #12121a;
+            position: relative; overflow: hidden; border-radius: 12px; margin-bottom: 30px;
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.9), 0 0 20px rgba(94, 234, 212, 0.05);
         }
 
         /* Linha indicadora central */
         .roller-window::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 50%;
-            width: 2px; height: 100%;
-            background: #5eead4;
-            transform: translateX(-50%);
-            z-index: 10;
-            box-shadow: 0 0 10px #5eead4;
+            content: ""; position: absolute; top: 0; left: 50%; width: 3px; height: 100%;
+            background: #5eead4; transform: translateX(-50%); z-index: 10; box-shadow: 0 0 15px #5eead4;
         }
 
         .roller-strip {
-            display: flex;
-            align-items: center;
-            position: absolute;
-            left: 0;
-            height: 100%;
-            transition: transform 5s cubic-bezier(0.1, 0, 0.1, 1); /* Curva de desaceleração */
+            display: flex; align-items: center; position: absolute; left: 0; height: 100%;
+            transition: transform 5s cubic-bezier(0.1, 0, 0.1, 1);
         }
 
         .rarity-item {
-            width: 150px; /* Largura fixa para o cálculo do JS */
-            text-align: center;
-            font-size: 20px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            flex-shrink: 0;
+            width: 160px; /* Largura para cálculo */
+            text-align: center; font-size: 22px; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 2px; flex-shrink: 0;
         }
 
         .btn-roll {
-            padding: 15px 40px;
-            background: #5eead4;
-            color: #000;
-            border: none;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
+            padding: 16px 45px; background: #5eead4; color: #000; border: none;
+            font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.3s;
+            text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(94, 234, 212, 0.3);
         }
 
-        .btn-roll:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-roll:hover { background: #fff; transform: scale(1.05); }
+        .btn-roll:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
 
-        .reward-display {
-            margin-top: 40px;
-            display: none;
-            animation: fadeIn 1s;
-        }
-
+        .reward-display { margin-top: 40px; display: none; animation: fadeIn 0.8s forwards; }
         .code-card {
-            background: #1a1a24;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px dashed #5eead4;
-            margin-top: 10px;
-            cursor: pointer;
-            font-family: monospace;
-            color: #ffd700;
-            font-size: 18px;
+            background: #1a1a24; padding: 20px; border-radius: 10px; border: 1px dashed #5eead4;
+            margin-top: 15px; cursor: pointer; font-family: 'Courier New', monospace;
+            color: #ffd700; font-size: 20px; box-shadow: 0 0 15px rgba(0,0,0,0.5);
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="back-link">← Voltar para o Início</a>
+        <a href="index.html" class="back-link">← VOLTAR</a>
     </header>
 
     <div class="container">
-        <h2 style="margin-bottom: 50px; letter-spacing: 3px; opacity: 0.8;">SORTEIO DE CAPITAL</h2>
+        <h2 style="margin-bottom: 40px; letter-spacing: 4px; color: #5eead4;">SISTEMA DE RESGATE</h2>
 
         <div class="roller-window">
             <div class="roller-strip" id="strip">
-                </div>
+                <div class="rarity-item" style="color: #444;">AGUARDANDO...</div>
+            </div>
         </div>
 
-        <button class="btn-roll" id="btnRoll" onclick="iniciarSorteio()">Sortear Agora</button>
+        <button class="btn-roll" id="btnRoll" onclick="iniciarSorteio()">INICIAR SORTEIO</button>
 
         <div class="reward-display" id="reward">
-            <p id="raridadeNome" style="font-size: 24px; font-weight: bold;"></p>
+            <p id="raridadeNome" style="font-size: 20px; letter-spacing: 1px;"></p>
             <div class="code-card" id="codigoVal" onclick="copiarCodigo()"></div>
-            <p style="font-size: 12px; margin-top: 10px; opacity: 0.5;">Clique no código para copiar</p>
+            <p style="font-size: 11px; margin-top: 12px; opacity: 0.5; text-transform: uppercase;">Toque no código para copiar</p>
         </div>
     </div>
 
-    <script src="js/roleta.js"></script>
+    <script>
+        /* LÓGICA INTEGRADA */
+        async function iniciarSorteio() {
+            const btn = document.getElementById('btnRoll');
+            const strip = document.getElementById('strip');
+            const rewardDiv = document.getElementById('reward');
+            
+            btn.disabled = true;
+            rewardDiv.style.display = "none";
+            
+            try {
+                // Busca o JSON na mesma pasta
+                const response = await fetch('codigos.json');
+                if (!response.ok) throw new Error();
+                const codigos = await response.json();
+
+                // 1. Sorteio por Peso
+                let totalChances = codigos.reduce((sum, item) => sum + item.chance, 0);
+                let randomNum = Math.random() * totalChances;
+                let ganhador = codigos[0];
+                let soma = 0;
+                for (let c of codigos) {
+                    soma += c.chance;
+                    if (randomNum <= soma) { ganhador = c; break; }
+                }
+
+                // 2. Montagem da "Tira" Visual
+                const itemWidth = 160; 
+                const numItensVisual = 55; 
+                strip.innerHTML = ""; 
+                strip.style.transition = "none";
+                strip.style.transform = "translateX(0px)";
+
+                for (let i = 0; i < numItensVisual; i++) {
+                    const tempItem = codigos[Math.floor(Math.random() * codigos.length)];
+                    const div = document.createElement('div');
+                    div.className = "rarity-item";
+                    // Define o item ganhador na posição de parada
+                    div.innerText = (i === numItensVisual - 3) ? ganhador.raridade : tempItem.raridade;
+                    div.style.color = getCor(div.innerText);
+                    strip.appendChild(div);
+                }
+
+                void strip.offsetWidth; // Reflow
+
+                // 3. Animação de Giro
+                strip.style.transition = "transform 5s cubic-bezier(0.1, 0, 0.1, 1)";
+                const windowWidth = document.querySelector('.roller-window').offsetWidth;
+                const finalMove = (numItensVisual - 3) * itemWidth - (windowWidth / 2) + (itemWidth / 2);
+                strip.style.transform = `translateX(-${finalMove}px)`;
+
+                // 4. Finalização
+                setTimeout(() => {
+                    document.getElementById('raridadeNome').innerText = `CATEGORIA: ${ganhador.raridade}`;
+                    document.getElementById('raridadeNome').style.color = getCor(ganhador.raridade);
+                    document.getElementById('codigoVal').innerText = ganhador.code;
+                    rewardDiv.style.display = "block";
+                    btn.disabled = false;
+                }, 5300);
+
+            } catch (e) {
+                alert("ERRO: O arquivo 'codigos.json' não foi encontrado na raiz.");
+                btn.disabled = false;
+            }
+        }
+
+        function getCor(raridade) {
+            const cores = { "Lendário": "#5eead4", "Épico": "#a855f7", "Raro": "#ffd700", "Incomum": "#3b82f6", "Comum": "#94a3b8" };
+            return cores[raridade] || "#fff";
+        }
+
+        function copiarCodigo() {
+            const txt = document.getElementById('codigoVal').innerText;
+            navigator.clipboard.writeText(txt).then(() => alert("Código Copiado!"));
+        }
+    </script>
 </body>
 </html>
