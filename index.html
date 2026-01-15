@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moneta | Sistema Econômico Vivo</title>
+  <style>
+    /* Reset e Variáveis */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    :root {
+      --bg-dark: #0a0a0c;
+      --card-bg: #12121a;
+      --accent: #5eead4; /* Teal / Ciano */
+      --gold: #ffd700;
+      --text: #eaeaea;
+    }
+    
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg-dark); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    /* Header & Menu Hambúrguer */
+    header { 
+      padding: 15px 30px; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      background: rgba(10, 10, 12, 0.9); 
+      position: sticky; top: 0; z-index: 1000;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #1f1f2e;
+    }
+    header h1 { color: var(--accent); font-size: 22px; letter-spacing: 2px; font-weight: 800; }
+
+    .menu-icon { font-size: 28px; cursor: pointer; color: var(--accent); }
+
+    /* Sidebar Lateral (Redirecionamentos) */
+    .sidebar {
+      position: fixed; top: 0; right: -250px; width: 250px; height: 100%;
+      background: var(--card-bg); z-index: 1001; transition: 0.4s;
+      padding: 60px 20px; border-left: 1px solid var(--accent);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+    .sidebar.active { right: 0; }
+    .sidebar a { display: block; color: var(--text); text-decoration: none; padding: 15px 0; font-size: 18px; border-bottom: 1px solid #1f1f2e; transition: 0.3s; }
+    .sidebar a:hover { color: var(--accent); padding-left: 10px; }
+    .close-menu { position: absolute; top: 20px; left: 20px; font-size: 24px; cursor: pointer; color: var(--accent); }
+
+    /* Hero Section */
+    .hero { 
+      height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; 
+      text-align: center; padding: 20px;
+      background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a0c 70%);
+    }
+    /* Espaço para a foto da Deusa que você criou */
+    .hero-img { 
+      width: 180px; height: 180px; border-radius: 50%; 
+      border: 3px solid var(--accent); margin-bottom: 20px; 
+      box-shadow: 0 0 30px rgba(94, 234, 212, 0.2);
+      object-fit: cover;
+    }
+    .hero h2 { font-size: 48px; margin-bottom: 15px; color: #fff; }
+    .hero p { max-width: 650px; opacity: 0.7; font-size: 18px; margin-bottom: 35px; }
+
+    .btn-main { 
+      padding: 15px 40px; border: none; background: var(--accent); color: #000;
+      font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.3s;
+      text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(94, 234, 212, 0.3);
+    }
+    .btn-main:hover { transform: translateY(-3px); background: #fff; box-shadow: 0 8px 25px rgba(94, 234, 212, 0.5); }
+
+    footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 13px; border-top: 1px solid #1f1f2e; margin-top: 50px; }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>MONETA</h1>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <div class="close-menu" onclick="toggleMenu()">✕</div>
+    <a href="index.html">Início</a>
+    <a href="daily.html">Daily Luck (Roleta)</a>
+    <a href="comandos.html">Comandos do Bot</a>
+    <a href="informacoes.html">Ecossistema & Wiki</a>
+    <a href="https://discord.gg/SEU_CONVITE" target="_blank" style="color: var(--gold); border-top: 2px solid #1f1f2e; margin-top: 20px;">Adicionar ao Discord</a>
+  </div>
+
+  <main class="hero">
+    <img src="avatar_moneta.png" alt="Deusa Moneta" class="hero-img">
+    
+    <h2>Economia Dinâmica.</h2>
+    <p>
+      Moneta transforma dinheiro virtual em estratégia, risco e decisão. 
+      Um ecossistema financeiro vivo onde o mercado oscila e cada escolha molda seu progresso.
+    </p>
+
+    <div style="display: flex; gap: 15px;">
+        <a href="daily.html" class="btn-main">Resgatar Daily</a>
+        <a href="informacoes.html" class="btn-main" style="background: transparent; color: var(--accent); border: 1px solid var(--accent); box-shadow: none;">Saiba Mais</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Moneta Economy Bot — Onde o capital encontra a estratégia.</p>
+  </footer>
+
+  <script>
+    // Função para abrir/fechar o menu lateral
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+
+    // Fecha o menu se clicar fora dele
+    document.addEventListener('click', function(event) {
+        const sidebar = document.getElementById('sidebar');
+        const menuIcon = document.querySelector('.menu-icon');
+        if (!sidebar.contains(event.target) && event.target !== menuIcon && sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+        }
+    });
+  </script>
+
+</body>
+</html>
